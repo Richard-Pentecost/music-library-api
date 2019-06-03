@@ -9,7 +9,7 @@ describe('/artists', () => {
   });
 
   describe('POST /artists', () => {
-    xit('creates a new artist in the database', (done) => {
+    it('creates a new artist in the database', (done) => {
       chai.request(server)
         .post('/artists')
         .send({
@@ -44,7 +44,7 @@ describe('/artists', () => {
     });
 
     describe('GET /artists', () => {
-      xit('gets all artist records', (done) => {
+      it('gets all artist records', (done) => {
         chai.request(server)
           .get('/artists')
           .end((err, res) => {
