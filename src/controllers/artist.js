@@ -22,13 +22,11 @@ exports.list = (req, res) => {
 };
 
 exports.find = (req, res) => {
-  Artist.find()
-    .where('_id').equals(req.params.artistId)
-    .exec((err, artist) => {
-      if (!artist) {
-        res.status(404).json({ error: 'The artist could not be found.' });
-      } else {
-        res.status(200).json(artist[0]);
-      }
-    });
+  Artist.find({ _id: req.params.artistId }, (err, artist) => {
+    if (!artist) {
+      res.status(404).json({ error: 'The artist could not be found.' });
+    } else {
+      res.status(200).json(artist[0]);
+    }
+  });
 };
