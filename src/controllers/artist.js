@@ -22,7 +22,8 @@ exports.list = (req, res) => {
 };
 
 exports.find = (req, res) => {
-  Artist.findById(req.params.artistId).exec((err, artist) => {
+  // findById - just requires findById(req.params.artistId).exec((err, artist) => { ... })
+  Artist.findOne({ _id: req.params.artistId }).exec((err, artist) => {
     if (!artist) {
       res.status(404).json({ error: 'The artist could not be found.' });
     } else {
