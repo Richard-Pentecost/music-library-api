@@ -114,6 +114,7 @@ describe('/artists', () => {
             expect(res.status).to.equal(200);
             Artist.findById(artist._id, (err, updatedArtist) => {
               expect(updatedArtist.name).to.equal('Kyle Minogue');
+              expect(updatedArtist.genre).to.equal(artist.genre);
               done();
             });
           });
