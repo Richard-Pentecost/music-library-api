@@ -104,6 +104,21 @@ describe('/artists', () => {
           });
       });
 
+      it('updates name of an artist record by id', (done) => {
+        const artist = artists[1];
+        chai.request(server)
+          .patch(`/artists/${artist._id}`)
+          .send({ name: 'Kyle Minogue' })
+          .end((err, res) => {
+            expect(err).to.equal(null);
+            expect(res.status).to.equal(200);
+            Artist.findById(artist._id, (err, updatedArtist) => {
+              expect(updatedArtist.name).to.equal('Kyle Minogue');
+              done();
+            });
+          });
+      });
+
       it('returns a 404 if the artist does not exist', (done) => {
         chai.request(server)
           .patch('/artists/12345')
